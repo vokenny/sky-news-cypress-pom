@@ -1,4 +1,5 @@
 import { Given, When, Then } from '@badeball/cypress-cucumber-preprocessor';
+import { homePage } from '../../pageObjects/singletonPages';
 
 const getIframe = () => {
   return cy
@@ -21,16 +22,9 @@ Given(/I am a user in '(.*), (.*)'/, (city: string, country: string) => {
 });
 
 Given("I'm on the Sky News Home page", () => {
-  cy.visit('/');
-
+  homePage.visit();
   getIframeBody().find('[title=Agree]').should('have.text', 'Agree').click();
-
-  cy.get('h1.sdc-site-component-header--project-one picture').should(
-    ($title) => {
-      const sanitisedTitle = $title.text().replace('\n', '').trim();
-      expect(sanitisedTitle).equals('Top Stories');
-    }
-  );
+  homePage.shouldBeLoaded();
 });
 
 When('I go to view the weather forecast', () => {
