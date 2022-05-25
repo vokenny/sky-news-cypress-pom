@@ -1,4 +1,4 @@
-import { Given, When, Then } from 'cypress-cucumber-preprocessor/steps';
+import { Given, When, Then } from '@badeball/cypress-cucumber-preprocessor';
 
 Given(/I am a user in '(.*), (.*)'/, (city: string, country: string) => {
   // In reality, do some test set up based on their location
@@ -8,6 +8,14 @@ Given(/I am a user in '(.*), (.*)'/, (city: string, country: string) => {
 
 Given("I'm on the Sky News Home page", () => {
   cy.visit('/');
+  cy.get('[title=Agree]').click({ force: true });
+
+  cy.get('h1.sdc-site-component-header--project-one picture').should(
+    ($title) => {
+      const sanitisedTitle = $title.text().replace('\n', '').trim();
+      expect(sanitisedTitle).equals('Top Stories');
+    }
+  );
 });
 
 When('I go to view the weather forecast', () => {
