@@ -6,16 +6,18 @@ export default class BasePage {
     return cy.get('h1 picture');
   }
 
+  get sanitisedTitle(): Cypress.Chainable<string> {
+    return this.title
+      .invoke('text')
+      .then((titleText: string): string => titleText.replace('\n', '').trim());
+  }
+
   visit(): void {
     cy.visit(this.urlPath);
   }
 
   shouldBeLoaded(): void {
     cy.location('pathname').should('equal', this.urlPath);
-
-    this.title.should(($title): void => {
-      const sanitisedTitle: string = $title.text().replace('\n', '').trim();
-      expect(sanitisedTitle).equals(this.titleText);
-    });
+    this.sanitisedTitle.should('equal', this.titleText);
   }
 }
