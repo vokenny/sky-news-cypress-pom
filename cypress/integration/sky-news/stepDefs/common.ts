@@ -1,7 +1,7 @@
 import { Given, When, Then } from '@badeball/cypress-cucumber-preprocessor';
 import { pageMap } from '../../../support/constants/pageMapping';
 import { cookiesIFrame } from '../components/cookiesIFrame';
-import { homePage } from '../pageObjects/singletonPages';
+import { articlePage, homePage } from '../pageObjects/singletonPages';
 
 Given(
   'I am a user in {string}, {string}',
@@ -22,9 +22,18 @@ When('I go to view the {string} news', (navLabel: string) => {
   homePage.selectNewsTab(navLabel);
 });
 
+When('I view the top story', () => {
+  const page = Cypress.env('PAGE');
+  page.viewTopStory();
+});
+
 Then('the {string} page should be shown', (pageName: string): void => {
   const pageObj = pageMap[pageName];
   if (!pageObj) throw new Error(`Invalid page name key. Received: ${pageName}`);
 
   pageObj.shouldBeLoaded();
+});
+
+Then('the news article should be shown', () => {
+  articlePage.shouldBeLoaded();
 });

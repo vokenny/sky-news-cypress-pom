@@ -24,6 +24,14 @@ export default class BasePage {
     return this.navbar.find('[data-role="main-nav-item"] a');
   }
 
+  get headlineStory(): Cypress.Chainable<JQuery<HTMLElement>> {
+    return cy.get('[data-type="hero-horizontal"]');
+  }
+
+  get headline(): Cypress.Chainable<JQuery<HTMLElement>> {
+    return this.headlineStory.find('[class$="__headline-text"]');
+  }
+
   visit(): void {
     cy.visit(this.urlPath);
   }
@@ -31,6 +39,7 @@ export default class BasePage {
   shouldBeLoaded(): void {
     cy.location('pathname').should('equal', this.urlPath);
     this.sanitisedTitle.should('equal', this.titleText);
+    Cypress.env('PAGE', this);
   }
 
   viewWeatherForecast(): void {
@@ -40,5 +49,10 @@ export default class BasePage {
   selectNewsTab(navLabel: string): void {
     this.newsTabs.filter(`:contains(${navLabel})`).as('targetTab');
     cy.get('@targetTab').click();
+  }
+
+  viewTopStory(): void {
+    this.headline.invoke('text').as('headlineText');
+    this.headlineStory.click();
   }
 }

@@ -10,3 +10,5 @@ Feature: Sky News Science & Tech
     # Actions convey behaviour, *not* UI interaction
     When I go to view the 'Science & Tech' news
     Then the 'Science & Tech' page should be shown
+    When I view the top story
+    Then the news article should be shown

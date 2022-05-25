@@ -26,6 +26,8 @@ export default class WeatherPage extends BasePage {
 
     const city: string = Cypress.env('CITY');
     this.location.should('have.text', city);
+
+    Cypress.env('PAGE', this);
   }
 
   selectDaysFromToday(inc: number): void {
