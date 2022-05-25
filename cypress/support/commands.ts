@@ -23,3 +23,21 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+export {};
+
+declare global {
+  namespace Cypress {
+    interface Chainable {
+      getIFrameBody(locator: string): Chainable<unknown>;
+    }
+  }
+}
+
+Cypress.Commands.add('getIFrameBody', (locator) => {
+  return cy
+    .get(locator)
+    .its('0.contentDocument') // iFrame body sits inside 0.contentDocument
+    .should('exist')
+    .its('body')
+    .then(cy.wrap); // wrap body to continue chaining methods
+});

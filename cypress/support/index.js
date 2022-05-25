@@ -14,6 +14,8 @@
 // ***********************************************************
 
 // Import commands.js using ES2015 syntax:
-import './commands';
+import './commands.ts';
 
+// This is terrible, but not important for the demo.
+// Ignoring the `__tcfapi is not defined` error on Sky News.
 Cypress.on('uncaught:exception', (err) => false);
