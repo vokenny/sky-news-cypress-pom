@@ -1,4 +1,5 @@
 import {
+  articlePage,
   homePage,
   scienceAndTechPage,
   weatherPage,
@@ -8,4 +9,5 @@ export const pageMap = Object.freeze({
   Home: homePage,
   Weather: weatherPage,
   'Science & Tech': scienceAndTechPage,
+  Article: articlePage,
 });
