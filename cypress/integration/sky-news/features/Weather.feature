@@ -16,7 +16,5 @@ Feature: Sky News Weather
   Scenario: User wants to view the weather for the next day
     When I go to view the weather forecast
     Then the local weather forecast should be shown
-    # Action will save scenario-specific metadata e.g. current day, but cleaned up in AfterEach hooks
     When I view the weather for the next day
-    # Saved metadata is used to assert what the next day should be
     Then the local weather forecast should be shown for the next day
