@@ -9,10 +9,10 @@ Feature: Sky News Weather
   Scenario: User wants to view their local weather
     # Actions convey behaviour, not UI interaction
     When I go to view the weather forecast
+    And I view today's forecast
     # Assertions are abstracted behind the step def, except for the main purpose
     Then the local weather forecast should be shown
 
-  @skip
   Scenario: User wants to view the weather for the next day
     When I go to view the weather forecast
     Then the local weather forecast should be shown
