@@ -12,6 +12,6 @@
     "cy:open": "cypress open"
   },
   "cypress-cucumber-preprocessor": {
-    "stepDefinitions": "cypress/integration/**/stepdefs/**/*.{js,ts}"
+    "stepDefinitions": "cypress/integration/**/stepDefs/**/*.{js,ts}"
   }
 }
