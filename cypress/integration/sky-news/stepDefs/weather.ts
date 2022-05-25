@@ -1,6 +1,6 @@
 import { Given, When, Then } from '@badeball/cypress-cucumber-preprocessor';
-import { cookiesIFrame } from '../../components/cookiesIFrame';
-import { homePage, weatherPage } from '../../pageObjects/singletonPages';
+import { cookiesIFrame } from '../components/cookiesIFrame';
+import { homePage, weatherPage } from '../pageObjects/singletonPages';
 
 Given(/I am a user in '(.*), (.*)'/, (city: string, country: string): void => {
   // In reality, do some test set up based on their location
