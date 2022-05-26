@@ -33,11 +33,14 @@ declare global {
   }
 }
 
-Cypress.Commands.add('getIFrameBody', (locator) => {
-  return cy
-    .get(locator)
-    .its('0.contentDocument') // iFrame body sits inside 0.contentDocument
-    .should('exist')
-    .its('body')
-    .then(cy.wrap); // wrap body to continue chaining methods
-});
+Cypress.Commands.add(
+  'getIFrameBody',
+  (locator: string): Cypress.Chainable<unknown> => {
+    return cy
+      .get(locator)
+      .its('0.contentDocument') // iFrame body sits inside 0.contentDocument
+      .should('exist')
+      .its('body')
+      .then(cy.wrap); // wrap body to continue chaining methods
+  }
+);

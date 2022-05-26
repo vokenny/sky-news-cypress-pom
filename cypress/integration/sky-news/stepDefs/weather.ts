@@ -5,7 +5,7 @@ When('I go to view the weather forecast', (): void => {
   homePage.viewWeatherForecast();
 });
 
-When("I view today's forecast", () => {
+When("I view today's forecast", (): void => {
   weatherPage.selectTodaysForecast();
 });
 
@@ -22,7 +22,7 @@ Then(
   (): void => {
     weatherPage.shouldBeLoaded();
 
-    cy.get('@expectedDay').then((expectedDay) => {
+    cy.get('@expectedDay').then((expectedDay): void => {
       weatherPage.activeForecastDay.should('have.text', expectedDay);
     });
   }

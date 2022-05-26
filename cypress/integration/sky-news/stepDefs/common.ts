@@ -18,11 +18,11 @@ Given("I'm on the Sky News Home page", (): void => {
   homePage.shouldBeLoaded();
 });
 
-When('I go to view the {string} news', (navLabel: string) => {
+When('I go to view the {string} news', (navLabel: string): void => {
   homePage.selectNewsTab(navLabel);
 });
 
-When('I view the top story', () => {
+When('I view the top story', (): void => {
   const page = Cypress.env('PAGE');
   page.viewTopStory();
 });
@@ -34,6 +34,6 @@ Then('the {string} page should be shown', (pageName: string): void => {
   pageObj.shouldBeLoaded();
 });
 
-Then('the news article should be shown', () => {
+Then('the news article should be shown', (): void => {
   articlePage.shouldBeLoaded();
 });
