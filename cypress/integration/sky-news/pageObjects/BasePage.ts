@@ -54,8 +54,7 @@ export default class BasePage {
   }
 
   selectNewsTab(navLabel: string): void {
-    this.newsTabs.filter(`:contains(${navLabel})`).as('targetTab');
-    cy.get('@targetTab').click();
+    this.newsTabs.filter(`:contains(${navLabel})`).click();
   }
 
   viewTopStory(): void {
