@@ -10,6 +10,7 @@ export default class ArticlePage extends BasePage {
 
   shouldBeLoaded(): void {
     cy.location('pathname').should('include', this.urlPath);
+    this.skyLogo.should('have.attr', 'src').should('include', this.logoPath);
     cy.get('@headlineUrl').then((headlineUrl): void => {
       cy.location('pathname').should('equal', headlineUrl);
     });

@@ -2,6 +2,12 @@ export default class BasePage {
   urlPath: string;
   titleText: String;
 
+  logoPath: string = '/resources/sky-news-logo.svg';
+
+  get skyLogo(): Cypress.Chainable<JQuery<HTMLElement>> {
+    return cy.get('.sdc-site-header__logo img');
+  }
+
   get title(): Cypress.Chainable<JQuery<HTMLElement>> {
     return cy.get('h1 picture');
   }
@@ -38,6 +44,7 @@ export default class BasePage {
 
   shouldBeLoaded(): void {
     cy.location('pathname').should('equal', this.urlPath);
+    this.skyLogo.should('have.attr', 'src').should('include', this.logoPath);
     this.sanitisedTitle.should('equal', this.titleText);
     Cypress.env('PAGE', this);
   }

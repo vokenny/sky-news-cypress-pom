@@ -22,6 +22,7 @@ export default class WeatherPage extends BasePage {
 
   shouldBeLoaded(): void {
     cy.location('pathname').should('equal', this.urlPath);
+    this.skyLogo.should('have.attr', 'src').should('include', this.logoPath);
     this.sanitisedTitle.should('equal', this.titleText);
 
     const city: string = Cypress.env('CITY');
