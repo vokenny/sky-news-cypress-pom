@@ -50,4 +50,10 @@ export default class WeatherPage extends BasePage {
   selectTodaysForecast(): void {
     this.todaysForecast.click();
   }
+
+  validateNextDay(): void {
+    cy.get('@expectedDay').then((expectedDay): void => {
+      this.activeForecastDay.should('have.text', expectedDay);
+    });
+  }
 }

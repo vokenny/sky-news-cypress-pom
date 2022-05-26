@@ -20,10 +20,6 @@ Then('the local weather forecast should be shown', (): void => {
 Then(
   'the local weather forecast should be shown for the next day',
   (): void => {
-    weatherPage.shouldBeLoaded();
-
-    cy.get('@expectedDay').then((expectedDay): void => {
-      weatherPage.activeForecastDay.should('have.text', expectedDay);
-    });
+    weatherPage.validateNextDay();
   }
 );
