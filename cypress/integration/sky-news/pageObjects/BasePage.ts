@@ -1,3 +1,6 @@
+import { navbar } from '../components/navbar';
+import { weatherWidget } from '../components/weatherWidget';
+
 export default class BasePage {
   urlPath: string;
   titleText: String;
@@ -16,18 +19,6 @@ export default class BasePage {
     return this.title
       .invoke('text')
       .then((titleText: string): string => titleText.replace('\n', '').trim());
-  }
-
-  get weatherWidget(): Cypress.Chainable<JQuery<HTMLElement>> {
-    return cy.get('.ui-weather-widget__wrapper');
-  }
-
-  get navbar(): Cypress.Chainable<JQuery<HTMLElement>> {
-    return cy.get('.sdc-site-header__menu');
-  }
-
-  get newsTabs(): Cypress.Chainable<JQuery<HTMLElement>> {
-    return this.navbar.find('[data-role="main-nav-item"] a');
   }
 
   get headlineStory(): Cypress.Chainable<JQuery<HTMLElement>> {
@@ -50,11 +41,11 @@ export default class BasePage {
   }
 
   viewWeatherForecast(): void {
-    this.weatherWidget.click();
+    weatherWidget.click();
   }
 
   selectNewsTab(navLabel: string): void {
-    this.newsTabs.filter(`:contains(${navLabel})`).click();
+    navbar.selectNewsTab(navLabel);
   }
 
   viewTopStory(): void {
