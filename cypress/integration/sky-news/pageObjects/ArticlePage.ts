@@ -10,8 +10,8 @@ export default class ArticlePage extends BasePage {
 
   shouldBeLoaded(): void {
     cy.location('pathname').should('include', this.urlPath);
-    cy.get('@headlineText').then((headlineText): void => {
-      this.title.should('include.text', headlineText);
+    cy.get('@headlineUrl').then((headlineUrl): void => {
+      cy.location('pathname').should('equal', headlineUrl);
     });
   }
 }

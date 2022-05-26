@@ -28,8 +28,8 @@ export default class BasePage {
     return cy.get('[data-type="hero-horizontal"]');
   }
 
-  get headline(): Cypress.Chainable<JQuery<HTMLElement>> {
-    return this.headlineStory.find('[class$="__headline-text"]');
+  get headlineLink(): Cypress.Chainable<JQuery<HTMLElement>> {
+    return this.headlineStory.find('[class$="__headline-link"]');
   }
 
   visit(): void {
@@ -52,7 +52,7 @@ export default class BasePage {
   }
 
   viewTopStory(): void {
-    this.headline.invoke('text').as('headlineText');
+    this.headlineLink.should('have.attr', 'href').as('headlineUrl');
     this.headlineStory.click();
   }
 }
