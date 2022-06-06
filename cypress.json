@@ -4,5 +4,8 @@
   "testFiles": "**/*.{feature,features}",
   "screenshotOnRunFailure": false,
   "video": false,
-  "chromeWebSecurity": false
+  "chromeWebSecurity": false,
+  "env": {
+    "APP_VERSION": "V2"
+  }
 }

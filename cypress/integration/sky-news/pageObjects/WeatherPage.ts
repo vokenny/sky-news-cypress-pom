@@ -4,12 +4,24 @@ export default class WeatherPage extends BasePage {
   urlPath: string = '/weather';
   titleText: string = 'Weather';
 
+  static locators = {
+    V1: {
+      weeklyForecastDays: '.weekly-weather__list',
+    },
+    V2: {
+      weeklyForecastDays: '.weekly-weather__list',
+    },
+  };
+
   get location(): Cypress.Chainable<JQuery<HTMLElement>> {
     return cy.get('.weather-location__selected');
   }
 
   get weeklyForecastDays(): Cypress.Chainable<JQuery<HTMLElement>> {
-    return cy.get('.weekly-weather__list').children();
+    cy.log(Cypress.env('APP_VERSION'));
+    const locator: string =
+      WeatherPage.locators[Cypress.env('APP_VERSION')].weeklyForecastDays;
+    return cy.get(locator).children();
   }
 
   get todaysForecast(): Cypress.Chainable<JQuery<HTMLElement>> {
